@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ClassZombie.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 16:01:06 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/18 09:49:56 by manufern         ###   ########.fr       */
+/*   Created: 2024/10/17 14:04:34 by manufern          #+#    #+#             */
+/*   Updated: 2024/10/18 09:48:56 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClassZombie.hpp"
+#ifndef  CLASSZOMBIE_HPP
+# define CLASSZOMBIE_HPP
+# include <string>
+# include <iostream>
+# include <iomanip>
+# include <cstdlib>
+# include <ctime>
 
-int main(void)
+class Zombie
 {
-    Zombie a;
-    Zombie b("pepe");
-    Zombie *c;
-    a.announce();
-    b.announce();
-    c = newZombie("Luis");
-    c->announce();
-    randomChump("Manuel");
-    delete(c);
-    return 0;
-}
+    private:
+        std::string name;
+    public:
+        Zombie();
+        Zombie(std::string name);
+        ~Zombie();
+        
+        void announce(void);
+};
+
+Zombie* zombieHorde(int N, std::string name);
+
+#endif

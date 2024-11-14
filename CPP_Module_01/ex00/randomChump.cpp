@@ -6,11 +6,11 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:55:22 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/17 12:49:55 by manufern         ###   ########.fr       */
+/*   Updated: 2024/10/18 09:50:05 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ClassZombie.hpp"
 
 void randomChump(std::string name)
 {

@@ -6,11 +6,11 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:59:36 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/17 12:29:12 by manufern         ###   ########.fr       */
+/*   Updated: 2024/10/18 09:50:08 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ClassZombie.hpp"
 
 Zombie::Zombie()
 {

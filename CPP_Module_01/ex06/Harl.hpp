@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 16:01:06 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/18 09:49:56 by manufern         ###   ########.fr       */
+/*   Created: 2024/10/21 11:05:43 by manufern          #+#    #+#             */
+/*   Updated: 2024/10/21 11:32:03 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClassZombie.hpp"
+#ifndef  HARL_HPP
+# define HARL_HPP
+# include <string>
+# include <iostream>
 
-int main(void)
+class Harl
 {
-    Zombie a;
-    Zombie b("pepe");
-    Zombie *c;
-    a.announce();
-    b.announce();
-    c = newZombie("Luis");
-    c->announce();
-    randomChump("Manuel");
-    delete(c);
-    return 0;
-}
+	private:
+		void debug( void );
+		void info( void );
+		void warning( void );
+		void error( void );
+	public:
+		Harl();
+		~Harl();
+		void complain(std::string level);
+};
+
+#endif

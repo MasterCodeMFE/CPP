@@ -6,11 +6,11 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:12:37 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/17 14:42:16 by manufern         ###   ########.fr       */
+/*   Updated: 2024/10/18 09:49:01 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "ClassZombie.hpp"
 
 int main(void)
 {
