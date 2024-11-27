@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:20:52 by manufern          #+#    #+#             */
-/*   Updated: 2024/11/18 18:09:07 by manufern         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:55:18 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,12 +63,12 @@ void fixed::setRawBits(int const raw)
 
 float fixed::toFloat(void) const
 {
-    return static_cast<float>(this->num) / (1 << 8);  // 8 bits fraccionales
+    return static_cast<float>(this->num) / (1 << this->raw);  // 8 bits fraccionales
 }
 
 int fixed::toInt(void) const
 {
-    return this->num >> 8;  // 8 bits fraccionales
+    return this->num >> this->raw;  // 8 bits fraccionales
 }
 
 fixed::~fixed()
