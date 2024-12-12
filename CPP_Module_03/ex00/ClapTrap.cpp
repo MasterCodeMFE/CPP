@@ -72,7 +72,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (HitPoint > 0)
     {
         unsigned int damageTaken;
-        if (amount >= HitPoint)
+        if (amount >= (unsigned int) HitPoint)
         {
             damageTaken = HitPoint;
         } else
