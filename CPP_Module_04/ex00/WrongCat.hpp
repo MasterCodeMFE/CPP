@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:15:24 by manufern          #+#    #+#             */
-/*   Updated: 2024/11/27 12:17:44 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:47:02 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class WrongCat: public WrongAnimal
         ~WrongCat();
         WrongCat(const WrongCat& other);
         WrongCat& operator=(const WrongCat& other);
-        void makeSound() const override; // Sobrescribe el método
+        void makeSound() const;
 };
 
 #endif

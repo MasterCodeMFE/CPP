@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:25:17 by manufern          #+#    #+#             */
-/*   Updated: 2024/11/27 16:45:34 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/16 10:48:32 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Dog: public Animal
         ~Dog();
         Dog(const Dog& other);
         Dog& operator=(const Dog& other);
-        void makeSound() const override; // Sobrescribe el método
+        void makeSound() const;
         Brain* getBrain() const;
 };
 
