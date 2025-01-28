@@ -77,7 +77,7 @@ void ClapTrap::takeDamage(unsigned int amount)
     if (this->HitPoint > 0)
     {
         unsigned int damageTaken;
-        if (amount >= (unsigned int) this->HitPoint)
+        if (amount >= this->HitPoint)
         {
             damageTaken = this->HitPoint;
         } else

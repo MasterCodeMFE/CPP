@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 15:20:56 by manufern          #+#    #+#             */
-/*   Updated: 2024/11/18 17:57:28 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/04 16:58:17 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FIXED_HPP
 # include <iostream>
 # include <cmath>
+#include <limits>
+#include <iomanip> 
 
 class fixed {
 private:

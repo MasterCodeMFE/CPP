@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 15:05:45 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/21 11:42:45 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:04:57 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,17 @@ void Harl::error( void )
 void Harl::complain(std::string level)
 {
     int i = 0;
+    void (Harl::*functions[4])() = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
     std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-    while (levels[i] != level && i < 5)
+    while (i < 4)
     {
+        if(levels[i] == level)
+        {
+            (this->*functions[i])();
+            return;
+        }
         i ++;
     }
-    switch (i)
-    {
-        case 0:
-            debug();
-            break;
-        case 1:
-            info();
-            break;
-        case 2:
-            warning();
-            break;
-        case 3:
-            error();
-            break;
-        default:
-            std::cout << "Error: Unknown level." << std::endl;
-            break;
-    }
+
+    std::cout << "Error: Unknown level." << std::endl;
 }

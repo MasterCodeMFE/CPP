@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:36:51 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/21 12:11:29 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:49:48 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Weapon
 		Weapon(std::string type);
 		~Weapon();
 		
-		std::string getType() const {return (type);};
+		const std::string getType() const;
 		
 		void setType(std::string type);
 };

@@ -21,28 +21,13 @@
         static const int raw = 8;
   
     public:
-        // cannonical or complied form
         fixed();
         fixed(const fixed& other);
         fixed& operator=(const fixed& other);
         ~fixed();
         
-        // auxiliar functions and elements
         int getRawBits(void);
         void setRawBits(int const raw);
 
 };
-
-
 #endif
-
-
-/* int main (int argc, char **argv)
-{
-    class fixed fx;
-
-    fx = new(fixed)
-
-~fx()
-    exit 0;
-} */

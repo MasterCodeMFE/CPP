@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   ClassZombie.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:30:44 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/17 14:37:59 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:40:14 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
+#ifndef  ZOMBIE_HPP
 # define ZOMBIE_HPP
 # include <string>
 # include <iostream>

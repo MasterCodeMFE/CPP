@@ -6,11 +6,11 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 15:59:36 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/18 09:50:08 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:00:42 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClassZombie.hpp"
+#include "Zombie.hpp"
 
 Zombie::Zombie()
 {
@@ -19,7 +19,7 @@ Zombie::Zombie()
 
 Zombie::~Zombie()
 {
-   std::cout << "Destructor zombie called." << std::endl; 
+        std::cout << "Destructor for zombie '" << name << "' called." << std::endl;
 }
 
 Zombie::Zombie(std::string name)
@@ -30,6 +30,5 @@ Zombie::Zombie(std::string name)
 
 void Zombie::announce(void)
 {
-
-    std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+    std::cout << "\033[1;32m" << name << " (Zombie) says: BraiiiiiiinnnzzzZ! 🧟\033[0m" << std::endl;
 }

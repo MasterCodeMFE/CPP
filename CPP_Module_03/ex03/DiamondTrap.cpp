@@ -32,7 +32,8 @@ DiamondTrap::~DiamondTrap()
 }
 
 // Constructor de copia
-DiamondTrap::DiamondTrap(const DiamondTrap& other) : ClapTrap(other), FragTrap(other), ScavTrap(other), name(other.name)
+DiamondTrap::DiamondTrap(const DiamondTrap& other) 
+    : ScavTrap(other), FragTrap(other), name(other.name) 
 {
     std::cout << "DiamondTrap copy constructor called for " << name << std::endl;
 }

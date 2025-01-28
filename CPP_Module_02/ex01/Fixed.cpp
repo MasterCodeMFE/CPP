@@ -63,12 +63,12 @@ void fixed::setRawBits(int const raw)
 
 float fixed::toFloat(void) const
 {
-    return static_cast<float>(this->num) / (1 << 8);  // 8 bits fraccionales
+    return static_cast<float>(this->num) / (1 << raw);
 }
 
 int fixed::toInt(void) const
 {
-    return this->num >> 8;  // 8 bits fraccionales
+    return this->num >> raw;
 }
 
 fixed::~fixed()

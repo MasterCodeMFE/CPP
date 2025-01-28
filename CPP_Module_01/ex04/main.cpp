@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 09:41:13 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/22 13:12:10 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/02 14:36:03 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int main(int argc, char **argv)
     }
 
     std::string name = argv[1];
-    std::ofstream newFile(name + ".replace");
+    std::ofstream newFile((name + ".replace").c_str());
     if (!newFile.is_open())
     {
         std::cerr << "Error: Could not open the file for writing." << std::endl;

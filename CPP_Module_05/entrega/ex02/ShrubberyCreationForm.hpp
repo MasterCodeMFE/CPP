@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ClassZombie.hpp                                    :+:      :+:    :+:   */
+/*   ShrubberyCreationForm.hpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 15:30:44 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/18 09:49:52 by manufern         ###   ########.fr       */
+/*   Created: 2025/01/21 13:02:13 by manufern          #+#    #+#             */
+/*   Updated: 2025/01/21 13:11:33 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef  CLASSZOMBIE_HPP
-# define CLASSZOMBIE_HPP
-# include <string>
-# include <iostream>
-# include <iomanip>
-# include <cstdlib>
-# include <ctime>
+#ifndef SHRUBBERY_CREATION_FORM_HPP
+#define SHRUBBERY_CREATION_FORM_HPP
 
-class Zombie
+#include "AForm.hpp"
+#include "Bureaucrat.hpp"
+
+class ShrubberyCreationForm: public AForm
 {
     private:
-        std::string name;
-    public:
-        Zombie();
-        Zombie(std::string name);
-        ~Zombie();
-        void announce(void);
-};
 
-Zombie* newZombie( std::string name);
-void randomChump( std::string name);
+    public:
+        ShrubberyCreationForm();
+        ~ShrubberyCreationForm();
+        ShrubberyCreationForm(const ShrubberyCreationForm& other);
+        ShrubberyCreationForm& operator=(const ShrubberyCreationForm& other);
+};
 
 #endif

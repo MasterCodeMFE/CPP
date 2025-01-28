@@ -1,6 +1,6 @@
 NAME = FragTrap
 
-CXX = c++
+CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRC = main.cpp \
@@ -13,10 +13,7 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CXX) $(FLAGS) -o $(NAME) $(OBJ)
-
-%.o: %.cpp
-	$(CXX) $(FLAGS) -c $< -o $@
+	$(CC) $(FLAGS) -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

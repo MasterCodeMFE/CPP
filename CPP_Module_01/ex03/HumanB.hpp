@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:50:28 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/21 12:11:08 by manufern         ###   ########.fr       */
+/*   Updated: 2024/12/02 15:52:17 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class HumanB
         HumanB(std::string name);
         ~HumanB();
         
-        std::string getName() const {return (name);};
+        std::string getName() const;
         
         void attack();
         void setWeapon(Weapon &weapon);
