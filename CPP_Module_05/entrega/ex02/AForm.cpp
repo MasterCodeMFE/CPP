@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 15:33:48 by manufern          #+#    #+#             */
-/*   Updated: 2025/01/31 11:11:25 by manufern         ###   ########.fr       */
+/*   Updated: 2025/01/31 11:16:59 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ AForm::AForm(std::string const name, bool isSigned, int const gradeToSign, int c
         throw
             Bureaucrat::GradeTooLowException();
     }
-    else if (gradeToSign < 1 ||gradeToExecute < 2)
+    else if (gradeToSign < 1 ||gradeToExecute < 1)
     {
         throw
             Bureaucrat::GradeTooHighException();
