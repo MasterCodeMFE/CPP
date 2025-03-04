@@ -8,7 +8,8 @@ SRC = main.cpp \
 	  AForm.cpp \
 	  PresidentialPardonForm.cpp \
 	  RobotomyRequestForm.cpp \
-	  ShrubberyCreationForm.cpp
+	  ShrubberyCreationForm.cpp \
+	  Intern.cpp
 
 
 OBJ = $(SRC:.cpp=.o)
@@ -29,4 +30,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean
