@@ -10,7 +10,7 @@ int main()
     std::cout << "Raw: " << raw << std::endl;
 
     Data* ptr2 = Serializer::deserialize(raw);
-    std::cout << "ptr2: " << ptr2->value << std::endl;
-    delete ptr2;
+    std::cout << "ptr2->value: " << ptr2->value << std::endl;
+    
     return 0;
 }

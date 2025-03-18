@@ -5,13 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 10:12:45 by manufern          #+#    #+#             */
-/*   Updated: 2025/03/05 10:13:26 by manufern         ###   ########.fr       */
+/*   Created: 2025/03/05 10:18:17 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:19:07 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 Bureaucrat::Bureaucrat(): name("Default")
 {
@@ -34,7 +37,7 @@ Bureaucrat::Bureaucrat(const std::string name, int grade): name(name)
 }
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << "Bureaucrat default destructor called for " << name << std::endl;
+   std::cout << "Bureaucrat default destructor called for " << name << std::endl; 
 }
 Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.name), grade(other.grade)
 {
@@ -97,7 +100,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
     return os;
 }
 
-void Bureaucrat::signForm(Form& form) const
+void Bureaucrat::signForm(AForm& form) const
 {
     try
     {

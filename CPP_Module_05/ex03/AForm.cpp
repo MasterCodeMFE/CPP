@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 10:13:53 by manufern          #+#    #+#             */
-/*   Updated: 2025/03/05 10:14:50 by manufern         ###   ########.fr       */
+/*   Created: 2025/03/05 10:17:30 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:17:37 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ AForm::~AForm()
 {
     std::cout << "Form destructor called for " << name << std::endl;
 }
-
 AForm::AForm(const AForm& other): name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
 {
     std::cout << "Form copy constructor called for " << name << std::endl;
@@ -64,12 +63,10 @@ bool AForm::getIsSigned() const
 {
     return isSigned;
 }
-
 int AForm::getGradeToSign() const
 {
     return gradeToSign;
 }
-
 int AForm::getGradeToExecute() const
 {
     return gradeToExecute;

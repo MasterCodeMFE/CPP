@@ -5,106 +5,111 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 16:04:52 by manufern          #+#    #+#             */
-/*   Updated: 2024/12/18 13:05:41 by manufern         ###   ########.fr       */
+/*   Created: 2025/03/05 10:12:32 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:12:33 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define BOLD    "\033[1m"
+
 int main()
 {
-    std::cout << "******** TEST CREACIÓN ********\n" << std::endl;
     try
     {
-        Bureaucrat boss("David", 1);
-        std::cout << boss << std::endl;
+        std::cout << BOLD << CYAN << "Test for creating bureaucrats:" << RESET << std::endl << std::endl << std::endl;
 
-        Bureaucrat intern("Gema", 150);
-        std::cout << intern << std::endl;
+        std::cout << YELLOW << "Creating a bureaucrat with a valid grade" << RESET << std::endl;
+        Bureaucrat bureaucrat1("Juan", 50);
+        std::cout << GREEN <<"Name: " << bureaucrat1.getName() << " grade: " << bureaucrat1.getGrade() << RESET << std::endl << std::endl << std::endl;
 
-        Bureaucrat mid("Nico", 75);
-        std::cout << mid << std::endl;
+        std::cout << YELLOW << "Creating a bureaucrat with the lowest grade" << RESET << std::endl;
+        Bureaucrat bureaucrat2("Luis", 150);
+        std::cout << GREEN <<"Name: " << bureaucrat2.getName() << " grade: " << bureaucrat2.getGrade() << RESET << std::endl << std::endl << std::endl;
+
+        std::cout << YELLOW << "Creating a bureaucrat with the highest grade" << RESET << std::endl;
+        Bureaucrat bureaucrat3("Jose", 1);
+        std::cout << GREEN <<"Name: " << bureaucrat3.getName() << " grade: " << bureaucrat3.getGrade() << RESET << std::endl << std::endl << std::endl;
+
+        std::cout << RED << "Creating a bureaucrat with a grade higher than the maximum" << RESET << std::endl;
+        Bureaucrat bureaucrat4("Desi", -1);
+        std::cout << GREEN <<"Name: " << bureaucrat4.getName() << " grade: " << bureaucrat4.getGrade() << RESET << std::endl << std::endl << std::endl;
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
-
-    std::cout << "\n******** TEST INCREMENTOS ********\n" << std::endl;
-    try
-    {
-        Bureaucrat top("Irene", 0);
-        std::cout << top << std::endl;
-
-        top.setIncrement();
-        std::cout << "After increment: " << top << std::endl;
-
-        // Esto lanzará una excepción
-        top.setIncrement();
-        std::cout << "After second increment: " << top << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n******** TEST DECREMENTOS ********\n" << std::endl;
-    try
-    {
-        Bureaucrat bottom("Ferran", 149);
-        std::cout << bottom << std::endl;
-
-        bottom.setDecrement();
-        std::cout << "After decrement: " << bottom << std::endl;
-
-        // Esto lanzará una excepción
-        bottom.setDecrement();
-        std::cout << "After second decrement: " << bottom << std::endl;
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-
-    std::cout << "\n******** TEST VALORES INVÁLIDOS ********\n" << std::endl;
-    try
-    {
-        Bureaucrat invalidHigh("Ruben", 0); // Grade demasiado alto
-    }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
+    catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << '\n';
+	}
 
     try
     {
-        Bureaucrat invalidLow("Antonio", 200); // Grade demasiado bajo
+        std::cout << RED << "Creating a bureaucrat with a grade lower than the minimum" << RESET << std::endl;
+        Bureaucrat bureaucrat5("Mark", 155);
+        std::cout << GREEN <<"Name: " << bureaucrat5.getName() << " grade: " << bureaucrat5.getGrade() << RESET << std::endl << std::endl << std::endl;
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
+    catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << RESET << '\n';
+	}
 
-    std::cout << "\n******** TEST COPIA Y ASIGNACIÓN ********\n" << std::endl;
     try
     {
-        Bureaucrat original("Manuel", 42);
-        std::cout << "Original: " << original << std::endl;
+        std::cout << std::endl << std::endl << std::endl << BOLD << CYAN << "Test for grade increment:" << RESET << std::endl << std::endl;
 
-        Bureaucrat copy = original; // Constructor de copia
-        std::cout << "Copy: " << copy << std::endl;
+        std::cout << YELLOW << "Incrementing Juan's grade" << RESET << std::endl;
+        Bureaucrat bureaucrat1("Juan", 50);
+        std::cout << GREEN <<"Name: " << bureaucrat1.getName() << " grade: " << bureaucrat1.getGrade() << RESET << std::endl;
+        bureaucrat1.incrementGrade();
+        std::cout << GREEN <<"Name: " << bureaucrat1.getName() << " grade: " << bureaucrat1.getGrade() << RESET << std::endl;
 
-        Bureaucrat assigned("Luis", 100);
-        assigned = original; // Operador de asignación
-        std::cout << "Assigned: " << assigned << std::endl;
+        std::cout << YELLOW << "Incrementing Luis's grade" << RESET << std::endl;
+        Bureaucrat bureaucrat2("Luis", 150);
+        std::cout << GREEN <<"Name: " << bureaucrat2.getName() << " grade: " << bureaucrat2.getGrade() << RESET << std::endl;
+        bureaucrat2.incrementGrade();
+        std::cout << GREEN <<"Name: " << bureaucrat2.getName() << " grade: " << bureaucrat2.getGrade() << RESET << std::endl << std::endl << std::endl;
+        
+        std::cout << YELLOW << "Incrementing Jose's grade" << RESET << std::endl;
+        Bureaucrat bureaucrat3("Jose", 1);
+        std::cout << GREEN <<"Name: " << bureaucrat3.getName() << " grade: " << bureaucrat3.getGrade() << RESET << std::endl;
+        bureaucrat3.incrementGrade();
+        std::cout << GREEN <<"Name: " << bureaucrat3.getName() << " grade: " << bureaucrat3.getGrade() << RESET << std::endl << std::endl << std::endl;
     }
-    catch (const std::exception &e)
+    catch(const std::exception& e)
     {
-        std::cerr << "Exception caught: " << e.what() << std::endl;
+        std::cerr << RED << e.what() << RESET << '\n';
     }
 
-    std::cout << "\n******** FIN DEL TEST ********\n" << std::endl;
+    try
+    {
+        std::cout << std::endl << std::endl << std::endl << BOLD << CYAN << "Test for grade decrement:" << RESET << std::endl << std::endl;
 
-    return 0;
+        std::cout << YELLOW << "Decrementing Juan's grade" << RESET << std::endl;
+        Bureaucrat bureaucrat1("Juan", 50);
+        std::cout << GREEN <<"Name: " << bureaucrat1.getName() << " grade: " << bureaucrat1.getGrade() << RESET << std::endl;
+        bureaucrat1.decrementGrade();
+        std::cout << GREEN <<"Name: " << bureaucrat1.getName() << " grade: " << bureaucrat1.getGrade() << RESET << std::endl << std::endl << std::endl;
+
+        std::cout << YELLOW << "Decrementing Jose's grade" << RESET << std::endl;
+        Bureaucrat bureaucrat3("Jose", 1);
+        std::cout << GREEN <<"Name: " << bureaucrat3.getName() << " grade: " << bureaucrat3.getGrade() << RESET << std::endl;
+        bureaucrat3.decrementGrade();
+        std::cout << GREEN <<"Name: " << bureaucrat3.getName() << " grade: " << bureaucrat3.getGrade() << RESET << std::endl << std::endl << std::endl;
+
+        std::cout << YELLOW << "Decrementing Luis's grade" << RESET << std::endl;
+        Bureaucrat bureaucrat2("Luis", 150);
+        std::cout << GREEN <<"Name: " << bureaucrat2.getName() << " grade: " << bureaucrat2.getGrade() << RESET << std::endl;
+        bureaucrat2.decrementGrade();
+        std::cout << GREEN <<"Name: " << bureaucrat2.getName() << " grade: " << bureaucrat2.getGrade() << RESET << std::endl << std::endl << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED << e.what() << RESET << '\n';
+    }
 }

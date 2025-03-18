@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 10:12:27 by manufern          #+#    #+#             */
-/*   Updated: 2025/03/05 10:12:28 by manufern         ###   ########.fr       */
+/*   Created: 2025/03/05 10:19:13 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:19:14 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,18 @@
 
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
+
+class AForm;
 
 class Bureaucrat
 {
     private:
         const std::string name;
-        int         grade;
+        int grade;
     
     public:
         Bureaucrat();
@@ -37,13 +43,15 @@ class Bureaucrat
         class GradeTooHighException : public std::exception
         {
             public:
-                const char* what() const  throw();
+                const char* what() const throw();
         };
         class GradeTooLowException : public std::exception
         {
             public:
-                const char* what() const  throw();
+                const char* what() const throw();
         };
+
+        void signForm(AForm &form) const;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);

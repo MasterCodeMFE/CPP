@@ -1,17 +1,5 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/17 16:04:52 by manufern          #+#    #+#             */
-/*   Updated: 2024/12/18 17:45:38 by manufern         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "Bureaucrat.hpp" // Asegúrate de incluir el encabezado de Bureaucrat
 
 #define RESET   "\033[0m"
 #define RED     "\033[31m"
@@ -20,32 +8,83 @@
 #define BLUE    "\033[34m"
 #define MAGENTA "\033[35m"
 #define CYAN    "\033[36m"
+#define BOLD    "\033[1m"
 
-int main() {
-    try {
-        std::cout << CYAN << "Creando objetos Bureaucrat y Form..." << RESET << std::endl;
-        Bureaucrat bob("Bob", 50);
-        Form form1("Form 1", 40, 100);
-        Form form2("Form 2", 60, 100);
+int main()
+{
+    try
+    {
+        std::cout << BOLD << CYAN << "Test for creating forms:" << RESET << std::endl << std::endl;
 
-        // Imprimir información de los formularios
-        std::cout << BLUE << "Imprimiendo información inicial de los formularios:" << RESET << std::endl;
-        std::cout << form1 << std::endl;
-        std::cout << form2 << std::endl;
+        std::cout << YELLOW << "Creating a form with valid grades" << RESET << std::endl;
+        Form form1("Form1", false, 50, 75);
+        std::cout << GREEN << "Form Name: " << form1.getName() << ", Is Signed: " << form1.getIsSigned() 
+                  << ", Grade to Sign: " << form1.getGradeToSign() << ", Grade to Execute: " 
+                  << form1.getGradeToExecute() << RESET << std::endl << std::endl;
 
-        // Intentar firmar formularios
-        std::cout << GREEN << "Intentando firmar Form 1..." << RESET << std::endl;
-        bob.signForm(form1); // Debería firmar
-        std::cout << GREEN << "Intentando firmar Form 2..." << RESET << std::endl;
-        bob.signForm(form2); // No debería firmar
+        std::cout << YELLOW << "Creating a form with a high grade to sign" << RESET << std::endl;
+        Form form2("Form2", false, 1, 50);
+        std::cout << GREEN << "Form Name: " << form2.getName() << ", Is Signed: " << form2.getIsSigned() 
+                  << ", Grade to Sign: " << form2.getGradeToSign() << ", Grade to Execute: " 
+                  << form2.getGradeToExecute() << RESET << std::endl << std::endl;
 
-        // Imprimir información de los formularios después de la firma
-        std::cout << BLUE << "Imprimiendo información final de los formularios:" << RESET << std::endl;
-        std::cout << form1 << std::endl;
-        std::cout << form2 << std::endl;
+        std::cout << YELLOW << "Creating a form with a low grade to execute" << RESET << std::endl;
+        Form form3("Form3", false, 100, 151);
+        std::cout << GREEN << "Form Name: " << form3.getName() << ", Is Signed: " << form3.getIsSigned() 
+                  << ", Grade to Sign: " << form3.getGradeToSign() << ", Grade to Execute: " 
+                  << form3.getGradeToExecute() << RESET << std::endl << std::endl;
 
-    } catch (const std::exception& e) {
-        std::cerr << RED << "Se lanzó una excepción: " << e.what() << RESET << std::endl;
+        std::cout << RED << "Creating a form with a grade too high to sign" << RESET << std::endl;
+        Form form4("Form4", false, -1, 50);
+        std::cout << GREEN << "Form Name: " << form4.getName() << ", Is Signed: " << form4.getIsSigned() 
+                  << ", Grade to Sign: " << form4.getGradeToSign() << ", Grade to Execute: " 
+                  << form4.getGradeToExecute() << RESET << std::endl << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED << e.what() << RESET << '\n';
+    }
+
+    try
+    {
+        std::cout << RED << "Creating a form with a grade too low to execute" << RESET << std::endl;
+        Form form5("Form5", false, 150, 160);
+        std::cout << GREEN << "Form Name: " << form5.getName() << ", Is Signed: " << form5.getIsSigned() 
+                  << ", Grade to Sign: " << form5.getGradeToSign() << ", Grade to Execute: " 
+                  << form5.getGradeToExecute() << RESET << std::endl << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED << e.what() << RESET << '\n';
+    }
+
+    try
+    {
+        std::cout << std::endl << BOLD << CYAN << "Test for signing forms:" << RESET << std::endl << std::endl;
+
+        Bureaucrat bureaucrat1("Juan", 50);
+        Form form6("Form6", false, 50, 75);
+        std::cout << GREEN << form6 << RESET << std::endl;
+        std::cout << YELLOW << "Signing form with bureaucrat:" << RESET << std::endl;
+        bureaucrat1.signForm(form6);
+        std::cout << GREEN << form6 << RESET << std::endl;
+
+        Bureaucrat bureaucrat2("Luis", 30);
+        Form form7("Form7", false, 40, 75);
+        std::cout << GREEN << form7 << RESET << std::endl;
+        std::cout << YELLOW << "Signing form with bureaucrat:" << RESET << std::endl;
+        bureaucrat2.signForm(form7);
+        std::cout << GREEN << form7 << RESET << std::endl;
+
+        Bureaucrat bureaucrat3("Jose", 100);
+        Form form8("Form8", false, 50, 75);
+        std::cout << YELLOW << "Trying to sign form with bureaucrat with too low grade:" << RESET << std::endl;
+        bureaucrat3.signForm(form8);
+        std::cout << GREEN << form8 << RESET << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << RED << e.what() << RESET << '\n';
     }
 
     return 0;

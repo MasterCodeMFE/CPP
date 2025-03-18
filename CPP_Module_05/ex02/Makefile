@@ -1,11 +1,15 @@
 NAME = Burocrata
 
 CXX = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
+FLAGS = -Wall -Werror -Wextra -std=c++98 -g3
 
 SRC = main.cpp \
 	  Bureaucrat.cpp \
-	  Form.cpp
+	  AForm.cpp \
+	  PresidentialPardonForm.cpp \
+	  RobotomyRequestForm.cpp \
+	  ShrubberyCreationForm.cpp
+
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -24,3 +28,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

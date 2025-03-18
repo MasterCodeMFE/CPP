@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 10:15:35 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:15:36 by manufern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 
 #include <string>
 #include <iostream>
-#include <iomanip>
-#include "AForm.hpp"
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
+
 
 class AForm;
 
@@ -13,7 +27,7 @@ class Bureaucrat
     private:
         const std::string name;
         int grade;
-
+    
     public:
         Bureaucrat();
         Bureaucrat(const std::string name, int grade);
@@ -21,26 +35,25 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat& other);
         Bureaucrat& operator=(const Bureaucrat& other);
 
-        const std::string getName() const;
-        int  getGrade() const;
-
-        void setIncrement();
-        void setDecrement();
+        std::string getName() const;
+        int getGrade() const;
+        void incrementGrade();
+        void decrementGrade();
 
         class GradeTooHighException : public std::exception
         {
-            const char * what() const throw();
+            public:
+                const char* what() const throw();
         };
-
         class GradeTooLowException : public std::exception
         {
-            const char * what() const throw();
+            public:
+                const char* what() const throw();
         };
 
-        void signForm(AForm& form);
-        
+        void signForm(AForm &form) const;
 };
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat);
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj);
 
-#endif // BUREAUCRAT_HPP
+#endif

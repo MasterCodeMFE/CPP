@@ -5,33 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/18 13:22:30 by manufern          #+#    #+#             */
-/*   Updated: 2024/12/18 16:24:46 by manufern         ###   ########.fr       */
+/*   Created: 2025/03/05 10:13:33 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:13:34 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
-
-Form::Form(): name("default"), isSigned(1), gradeToSign(1), execGrade(1)
+Form::Form(): name("Default"), isSigned(false), gradeToSign(1), gradeToExecute(1)
 {
-   std::cout << "Form constructor calls" << name << std::endl; 
+    std::cout << "Form default constructor called" << std::endl;
 }
 
-Form::Form(const std::string name, int gradeToSign, const int execGrade): name(name), isSigned(false), gradeToSign(gradeToSign), execGrade(execGrade)
+Form::Form(std::string name, bool isSigned, int gradeToSign, int gradeToExecute): name(name), isSigned(isSigned), gradeToSign(gradeToSign), gradeToExecute(gradeToExecute)
 {
-    std::cout << "Form constructor calls" << name << std::endl;
+    std::cout << "Form constructor called for " << name << std::endl;
+    if (gradeToSign > 150 ||gradeToExecute > 150)
+    {
+        throw
+            Bureaucrat::GradeTooLowException();
+    }
+    else if (gradeToSign < 1 ||gradeToExecute < 1)
+    {
+        throw
+            Bureaucrat::GradeTooHighException();
+    }
 }
 
 Form::~Form()
 {
-    std::cout << "Form destructor calls" << name << std::endl;
+    std::cout << "Form destructor called for " << name << std::endl;
 }
-
-Form::Form(const Form& other): name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), execGrade(other.execGrade)
+Form::Form(const Form& other): name(other.name), isSigned(other.isSigned), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute)
 {
-     std::cout << "Form copy constructor called for " << name << std::endl;
+    std::cout << "Form copy constructor called for " << name << std::endl;
 }
 
 Form& Form::operator=(const Form& other)
@@ -40,14 +48,8 @@ Form& Form::operator=(const Form& other)
     if (this != &other)
     {
         this->isSigned = other.isSigned;
-        this->gradeToSign = other.gradeToSign;
     }
     return *this;
-}
-
-const char* Form::GradeTooHighException::what() const throw()
-{
-    return "Error: The grade is too high";
 }
 
 std::string Form::getName() const
@@ -59,39 +61,36 @@ bool Form::getIsSigned() const
 {
     return isSigned;
 }
-
-int  Form::getGradeToSign() const
+int Form::getGradeToSign() const
 {
     return gradeToSign;
 }
+int Form::getGradeToExecute() const
+{
+    return gradeToExecute;
+}
 
-const char* Form::GradeTooLowException::what() const throw()
+std::ostream& operator<<(std::ostream& os, const Form& obj)
+{
+    os << "Form: " << obj.getName() << ", isSigned: " << obj.getIsSigned() << ", gradeToSign: " << obj.getGradeToSign() << ", gradeToExecute: " << obj.getGradeToExecute();
+    return os;
+}
+
+const char* Form::GradeTooHighException::what()  const  throw()
+{
+    return "Error: The grade is too high";
+}
+
+const char* Form::GradeTooLowException::what() const  throw()
 {
     return "Error: The grade is too low";
 }
-int Form::getExecGrade() const
-{
-    return execGrade;
-}
 
-std::ostream& operator<<(std::ostream& out, const Form& form)
+void Form::beSigned(const Bureaucrat& bureaucrat)
 {
-    out << "Form Name: " << form.getName() 
-        << ", Is Signed: " << (form.getIsSigned() ? "Yes" : "No")
-        << ", Grade to Sign: " << form.getGradeToSign()
-        << ", Execution Grade: " << form.getExecGrade();
-    return out;
-}
-
-void Form::beSigned(Bureaucrat bureaucrat)
-{
-    if (bureaucrat.getGrade() <= this->gradeToSign)
-    {
-        std::cout << "The bureaucrat " << bureaucrat.getName() << " is signing the form." << std::endl;
-        this->isSigned = true;
-    }
-    else
+    if (bureaucrat.getGrade() > gradeToSign)
     {
         throw GradeTooLowException();
     }
+    isSigned = true;
 }

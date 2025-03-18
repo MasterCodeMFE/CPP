@@ -1,32 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/05 10:12:22 by manufern          #+#    #+#             */
+/*   Updated: 2025/03/05 10:12:24 by manufern         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(): name("Default"), grade(1) 
+Bureaucrat::Bureaucrat(): name("Default")
 {
     std::cout << "Bureaucrat default constructor called for " << name << std::endl;
-}
-Bureaucrat::~Bureaucrat() 
-{
-    std::cout << "Bureaucrat destructor called for " << name << std::endl;
+    this->grade = 150;
 }
 
-Bureaucrat::Bureaucrat(const std::string name, int grade): name(name), grade(grade)
+Bureaucrat::Bureaucrat(const std::string name, int grade): name(name)
 {
     std::cout << "Bureaucrat parameterized constructor called for " << name << std::endl;
-    if (this->grade < 1)
+    if(grade < 1)
     {
         throw Bureaucrat::GradeTooHighException();
     }
-    else if (this->grade > 150)
+    else if(grade > 150)
     {
         throw Bureaucrat::GradeTooLowException();
     }
+    this->grade = grade;
 }
-
-Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.name), grade(other.grade) 
+Bureaucrat::~Bureaucrat()
+{}
+Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.name), grade(other.grade)
 {
     std::cout << "Bureaucrat copy constructor called for " << name << std::endl;
 }
-
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 {
     std::cout << "Bureaucrat assignment operator called for " << name << std::endl;
@@ -37,46 +47,49 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
     return *this;
 }
 
-const std::string Bureaucrat::getName() const
+std::string Bureaucrat::getName() const
 {
-    return this->name;
+    return(name);
 }
-
 int Bureaucrat::getGrade() const
 {
-    return this->grade;
+    return(grade);
 }
-
-void Bureaucrat::setIncrement()
+void Bureaucrat::incrementGrade()
 {
-    if (this->grade - 1 < 1)
+    if (grade -1 < 1)
     {
         throw Bureaucrat::GradeTooHighException();
     }
-    this->grade--;
+    else
+    {
+        grade --;
+    }
 }
-
-void Bureaucrat::setDecrement()
+void Bureaucrat::decrementGrade()
 {
-    if (this->grade + 1 > 150)
+    if (grade + 1 > 150)
     {
         throw Bureaucrat::GradeTooLowException();
     }
-    this->grade++;
+    else 
+    {
+        grade ++;
+    }
 }
 
-const char* Bureaucrat::GradeTooHighException::what() const throw()
+const char* Bureaucrat::GradeTooHighException::what()  const  throw()
 {
     return "Error: The grade is too high";
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw()
+const char* Bureaucrat::GradeTooLowException::what() const  throw()
 {
     return "Error: The grade is too low";
 }
 
-std::ostream& operator<<(std::ostream& out, const Bureaucrat& bureaucrat)
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 {
-    out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
-    return out;
+    os << "Name: " << obj.getName() << ", bureaucrat grade " << obj.getGrade();
+    return os;
 }
