@@ -74,6 +74,30 @@ bool isValidValue(double value)
 		return false;
 }
 
+void findClosestDate(const std::map<std::string, double>& bitcoinData, const std::string& userDate, double userBtc)
+{
+    // Si no se encuentra la fecha, buscar la más cercana hacia abajo
+    std::map<std::string, double>::const_iterator closestIt = bitcoinData.lower_bound(userDate);
+    
+    if (closestIt == bitcoinData.begin())
+    {
+        // No hay ninguna fecha anterior
+        std::cerr << "Error: No earlier dates found in Bitcoin data." << std::endl;
+    }
+    else
+    {
+        // Retroceder un iterador para obtener la fecha más cercana hacia abajo
+        --closestIt;
+        double btcValue = closestIt->second; // Precio del BTC en la fecha más cercana
+        double totalMoney = userBtc * btcValue; // Dinero total del usuario
+
+        std::cout << "Closest date: " << closestIt->first 
+                    << ", User BTC: " << userBtc 
+                    << ", BTC price on that date: " << btcValue 
+                    << ", Total money: " << totalMoney << std::endl;
+    }
+}
+
 void bitcoinExchange(char **argv)
 {
     std::map<std::string, double> bitcoinData; // Usar std::map en lugar de std::unordered_map
@@ -200,7 +224,7 @@ void bitcoinExchange(char **argv)
         }
         else
         {
-            std::cerr << "Error: Date not found in Bitcoin data." << std::endl;
+            findClosestDate(bitcoinData, userDate, userBtc);
         }
     }
 }

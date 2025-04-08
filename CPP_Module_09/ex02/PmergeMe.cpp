@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:49:44 by manufern          #+#    #+#             */
-/*   Updated: 2025/04/02 17:11:31 by manufern         ###   ########.fr       */
+/*   Updated: 2025/04/03 11:49:14 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void PmergeMe::parseArguments(int argc, char **argv)
                 std::cerr << "Error: The number must be between 0 and " << UINT_MAX << "." << std::endl;
                 throw std::invalid_argument("Invalid argument");
             }
-            if (num > 0)
+            if (num >= 0)
             {
                 vec.push_back(static_cast<unsigned int>(num));
                 deq.push_back(static_cast<unsigned int>(num)); // Opcional, si quieres llenar ambos
@@ -69,4 +69,5 @@ const std::deque<unsigned int>& PmergeMe::getDeque() const
 {
     return deq;
 }
+
 
