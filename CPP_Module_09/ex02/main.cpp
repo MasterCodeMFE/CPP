@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+#include <cctype>
 
 int main(int argc, char **argv)
 {
@@ -19,23 +20,55 @@ int main(int argc, char **argv)
         std::cerr << "Error: you must provide at least one argument." << std::endl;
         return 1;
     }
-
+    if (argc == 2)
+    {
+        for(int i = 0; argv[1][i]; i ++)
+        {
+            if(!isdigit(argv[1][i]))
+            {
+                std::cout << "Error: you must provide a number." << std::endl; 
+                return 1;
+            }
+        }
+        return 0;
+    }
     try
     {
-        // Crear una instancia de PmergeMe que inicializa y almacena los números
         PmergeMe sorter(argc, argv);
 
-        // Imprimir los números almacenados en vector y deque
         std::cout << "Numbers entered in vector: ";
         sorter.printHelper(sorter.getVector());
 
         std::cout << "Numbers entered in deque: ";
         sorter.printHelper(sorter.getDeque());
 
+
+        clock_t startVec = clock();
+        sorter.sortVec();
+        clock_t endVec = clock();
+
+
+        clock_t startDeq = clock();
+        sorter.sortDeq();
+        clock_t endDeq = clock();
+
+
+        std::cout << "Order numbers in vector: ";
+         sorter.printHelper(sorter.getSortedVec());
+
+        std::cout << "Order numbers in deque: ";
+        sorter.printHelper(sorter.getSortedDeq());
+        
+        double durationVec = (endVec - startVec) * 1000.0 / CLOCKS_PER_SEC;
+        std::cout << "Execution time vector: " << durationVec << " milliseconds" << std::endl;
+
+        double durationDec = (endDeq - startDeq) * 1000.0 / CLOCKS_PER_SEC;
+        std::cout << "Execution time deque: " << durationDec << " milliseconds" << std::endl;
+
     }
     catch (const std::invalid_argument &e)
     {
-        return 1; // Manejo de errores en los argumentos
+        return 1;
     }
 
     return 0;

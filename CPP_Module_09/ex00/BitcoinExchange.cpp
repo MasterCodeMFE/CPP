@@ -66,7 +66,7 @@ bool isValidDate(const std::string& date)
     return true;
 }
 
-bool isValidValue(double value)
+bool isValidValue(float value)
 {
 	if(value >= 0 && value <= 1000)
 		return true;
@@ -74,10 +74,10 @@ bool isValidValue(double value)
 		return false;
 }
 
-void findClosestDate(const std::map<std::string, double>& bitcoinData, const std::string& userDate, double userBtc)
+void findClosestDate(const std::map<std::string, float>& bitcoinData, const std::string& userDate, float userBtc)
 {
     // Si no se encuentra la fecha, buscar la más cercana hacia abajo
-    std::map<std::string, double>::const_iterator closestIt = bitcoinData.lower_bound(userDate);
+    std::map<std::string, float>::const_iterator closestIt = bitcoinData.lower_bound(userDate);
     
     if (closestIt == bitcoinData.begin())
     {
@@ -88,8 +88,8 @@ void findClosestDate(const std::map<std::string, double>& bitcoinData, const std
     {
         // Retroceder un iterador para obtener la fecha más cercana hacia abajo
         --closestIt;
-        double btcValue = closestIt->second; // Precio del BTC en la fecha más cercana
-        double totalMoney = userBtc * btcValue; // Dinero total del usuario
+        float btcValue = closestIt->second; // Precio del BTC en la fecha más cercana
+        float totalMoney = userBtc * btcValue; // Dinero total del usuario
 
         std::cout << "Closest date: " << closestIt->first 
                     << ", User BTC: " << userBtc 
@@ -98,10 +98,16 @@ void findClosestDate(const std::map<std::string, double>& bitcoinData, const std
     }
 }
 
+// Usamos std::map<std::string, float> para:
+// - Ordenar automáticamente las fechas (formato YYYY-MM-DD)
+// - Garantizar claves únicas (sin fechas duplicadas)
+// - Acceder a tasas de cambio en O(log n)
+// - Iterar fácilmente en orden cronológico
+// Ideal para almacenar y consultar tasas de cambio de Bitcoin por fecha.
 void bitcoinExchange(char **argv)
 {
-    std::map<std::string, double> bitcoinData; // Usar std::map en lugar de std::unordered_map
-    std::map<std::string, double> userData;    // Usar std::map en lugar de std::unordered_map
+    std::map<std::string, float> bitcoinData; // Usar std::map en lugar de std::unordered_map
+    std::map<std::string, float> userData;    // Usar std::map en lugar de std::unordered_map
 
     // Abrir archivo de datos de Bitcoin
     std::ifstream file("data.csv");
@@ -117,7 +123,7 @@ void bitcoinExchange(char **argv)
     while (std::getline(file, line))
     {
         std::string date;
-        double value;
+        float value;
 
         // Usar stringstream para dividir la línea
         std::stringstream ss(line);
@@ -161,10 +167,10 @@ void bitcoinExchange(char **argv)
 			dateUser.erase(dateUser.find_last_not_of(" \n\r\t") + 1); // Trim right
 			valueUserStr.erase(0, valueUserStr.find_first_not_of(" \n\r\t")); // Trim left
 
-			// Convertir valueUserStr a double
-			double valueUser;
+			// Convertir valueUserStr a float
+			float valueUser;
 			std::istringstream valueStream(valueUserStr);
-			valueStream >> valueUser; // Intentar convertir a double
+			valueStream >> valueUser; // Intentar convertir a float
 
 			// Verificar si la conversión fue exitosa
 			if (valueStream.fail() || !valueStream.eof())
@@ -183,10 +189,10 @@ void bitcoinExchange(char **argv)
     fileUser.close();
 
     // Procesar los datos del usuario
-    for (std::map<std::string, double>::const_iterator it = userData.begin(); it != userData.end(); ++it)
+    for (std::map<std::string, float>::const_iterator it = userData.begin(); it != userData.end(); ++it)
     {
         const std::string& userDate = it->first;
-        double userBtc = it->second; // Cantidad de BTC que tiene el usuario
+        float userBtc = it->second; // Cantidad de BTC que tiene el usuario
 
 
         // Validar la fecha primero
@@ -199,7 +205,7 @@ void bitcoinExchange(char **argv)
         // Validar el valor (cantidad de BTC)
         if (!isValidValue(userBtc))
         {
-            if (userBtc <= 0)
+            if (userBtc < 0)
             {
                 std::cerr << "Error: not a positive number." << std::endl;
             }
@@ -211,11 +217,11 @@ void bitcoinExchange(char **argv)
         }
 
         // Buscar la fecha en `bitcoinData`
-        std::map<std::string, double>::iterator btcIt = bitcoinData.find(userDate);
+        std::map<std::string, float>::iterator btcIt = bitcoinData.find(userDate);
         if (btcIt != bitcoinData.end()) // Si la fecha existe en bitcoinData
         {
-            double btcValue = btcIt->second; // Precio del BTC en esa fecha
-            double totalMoney = userBtc * btcValue; // Dinero total del usuario
+            float btcValue = btcIt->second; // Precio del BTC en esa fecha
+            float totalMoney = userBtc * btcValue; // Dinero total del usuario
 
             std::cout << "Date: " << userDate 
                       << ", User BTC: " << userBtc 

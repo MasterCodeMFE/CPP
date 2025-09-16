@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 11:29:18 by manufern          #+#    #+#             */
-/*   Updated: 2024/10/14 15:25:24 by manufern         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:00:46 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,14 @@ void PhoneBook::print_phone_book()
     std::cout << "Enter the index of the contact you want to view (1-8): ";
     std::string input;
     std::getline(std::cin, input);
-    int index = std::stoi(input) - 1;
+    int index;
+    try {
+	index = std::stoi(input);
+    } catch (const std::invalid_argument& e) {
+	    std::cout << "Eso no parece un número, illo. Prueba otra vez." << std::endl;
+    } catch (const std::out_of_range& e) {
+	    std::cout << "¡Eso es muy grande pa' un número! Relájate." << std::endl;
+    }
 
     if (index < 0 || index >= 8)
     {

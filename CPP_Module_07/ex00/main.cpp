@@ -15,5 +15,10 @@ int main( void ) {
     std::cout << "c = " << c << ", d = " << d << std::endl;
     std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
     std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+    int const v = 3;
+    int const n = 45;
+    std::cout << "min( v, n ) = " << ::min( v, n ) << std::endl;
+    std::cout << "max( n, v ) = " << ::max( v, n ) << std::endl;
+    
     return 0;
 }

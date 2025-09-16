@@ -1,5 +1,11 @@
 #include "RPN.hpp"
 
+// Usar std::stack<double> en una calculadora RPN ofrece:
+// - **Acceso restringido**: solo se puede acceder al elemento superior, evitando modificaciones no deseadas.
+// - **Interfaz semántica clara**: expresa de forma explícita que se sigue el principio LIFO (Last In, First Out).
+// - **Evita errores de acceso**: al no permitir acceso a elementos intermedios, se reduce el riesgo de errores lógicos.
+// - **Implementación eficiente**: generalmente respaldado por std::deque, ofreciendo operaciones push/pop en O(1).
+// - **Código más legible y mantenible**: facilita la comprensión del flujo de datos y operaciones en la calculadora.
 bool evaluateNPR(const std::string& expression, double& result) {
     std::stack<double> stack;
     std::istringstream iss(expression);
@@ -7,7 +13,7 @@ bool evaluateNPR(const std::string& expression, double& result) {
 
     while (iss >> token)
     {
-        if (isdigit(token[0]) || (token.size() > 1 && token[0] == '-'))
+        if (isdigit(token[0]) || (token.size() > 1 && (token[0] == '-' || token[0] == '+')))
         {
             std::istringstream numStream(token);
             double number;

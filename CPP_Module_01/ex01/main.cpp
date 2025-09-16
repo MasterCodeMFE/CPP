@@ -6,7 +6,7 @@
 /*   By: manufern <manufern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:12:37 by manufern          #+#    #+#             */
-/*   Updated: 2024/12/02 15:54:56 by manufern         ###   ########.fr       */
+/*   Updated: 2025/07/17 14:59:25 by manufern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-    int n = 4;
+    int n = 0;
     Zombie *a = zombieHorde(n, "Pepe");
     int i=0;
     while (i < n)
